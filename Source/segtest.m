@@ -1,0 +1,11 @@
+signal=1:100;
+fs=100
+W=fix(.04*fs)                %Window length is 40 ms
+SP=.4
+Window=hamming(W);
+L=length(signal)
+SP=fix(W.*SP)
+N=fix((L-W)/SP +1)
+Index=(repmat(1:W,N,1)+repmat((0:(N-1))'*SP,1,W))'
+hw=repmat(Window,1,N)
+Seg=signal(Index).*hw
